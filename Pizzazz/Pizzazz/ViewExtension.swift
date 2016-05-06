@@ -14,6 +14,7 @@ import UIKit
 extension UIView {
     
     func placeUIElement<T: UIView>(element: T, frame: CGRect) {
+        // print(frame)
         element.frame = frame
         self.addSubview(element)
     }
@@ -25,6 +26,8 @@ extension UIView {
             label.numberOfLines = 0
         case let field as UITextField:
             field.placeholder = text
+        case let field as UITextView:
+            field.text = text
         case let button as UIButton:
             button.setTitle(text, forState: .Normal)
         case let image as UIImageView:

@@ -35,7 +35,7 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
         moreButton.frame = CGRect(x: 0, y: 0, width: 30, height: 10)
         moreButton.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
         
-        let composeButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: nil)
+        let composeButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: "composeButtonPressed")
         composeButton.width = 40
         
         let item1 = UIBarButtonItem(customView: moreButton)
@@ -43,6 +43,11 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         toolbar.setItems([item1, spacer, composeButton], animated: true)
         view.addUIElement(toolbar, frame: CGRect(x: 0, y: h-40, width: w, height: 40))
+    }
+    
+    func composeButtonPressed() {
+        let dest = NewQuestionViewController()
+        navigationController?.pushViewController(dest, animated: true)
     }
     
     override func viewDidLoad() {

@@ -19,6 +19,7 @@
 		242912E11CDC6C6F008DF27F /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242912E01CDC6C6F008DF27F /* BoardViewController.swift */; };
 		242912E31CDC6DFD008DF27F /* PostViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242912E21CDC6DFD008DF27F /* PostViewCell.swift */; };
 		242912E51CDC94C1008DF27F /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242912E41CDC94C1008DF27F /* HeaderViewCell.swift */; };
+		242912E71CDD1A32008DF27F /* NewQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242912E61CDD1A32008DF27F /* NewQuestionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		242912E01CDC6C6F008DF27F /* BoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
 		242912E21CDC6DFD008DF27F /* PostViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewCell.swift; sourceTree = "<group>"; };
 		242912E41CDC94C1008DF27F /* HeaderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
+		242912E61CDD1A32008DF27F /* NewQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewQuestionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				242912DF1CDC6767008DF27F /* Cells */,
 				242912B71CDC34E1008DF27F /* HomeViewController.swift */,
 				242912E01CDC6C6F008DF27F /* BoardViewController.swift */,
+				242912E61CDD1A32008DF27F /* NewQuestionViewController.swift */,
 				242912B91CDC34E1008DF27F /* Main.storyboard */,
 				242912BC1CDC34E1008DF27F /* Assets.xcassets */,
 				242912BE1CDC34E1008DF27F /* LaunchScreen.storyboard */,
@@ -240,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				242912E31CDC6DFD008DF27F /* PostViewCell.swift in Sources */,
+				242912E71CDD1A32008DF27F /* NewQuestionViewController.swift in Sources */,
 				242912DB1CDC371E008DF27F /* StringAndDateExtension.swift in Sources */,
 				242912D71CDC3634008DF27F /* ViewExtension.swift in Sources */,
 				242912E51CDC94C1008DF27F /* HeaderViewCell.swift in Sources */,
