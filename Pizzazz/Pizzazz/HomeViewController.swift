@@ -21,10 +21,10 @@ class HomeViewController: UIViewController,
         static let CellClass = ClassViewCell.self
     }
     
-     let sections = ["Active Classes", "Inactive Classes"]
-     let dummyTitles = ["Class 1", "Class 2", "Class 3"]
-     let dummySubtitles = ["Class One", "Class Two", "Class Three"]
-     let dummyText = "University of Drumpf, Main Campus (America, United States of), Spring 2016"
+    let sections = ["Active Classes", "Inactive Classes"]
+    let activeCount = 3
+    let inactiveCount = 2
+    let dummyText = "University of Drumpf, Main Campus (America, United States of), Spring 2016"
     
     func add() {
         print("add pressed")
@@ -65,7 +65,7 @@ class HomeViewController: UIViewController,
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "add")
         navigationItem.setRightBarButtonItem(addButton, animated: true)
         
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: w, height: h))
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: w, height: h-50))
         tableView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         tableView.dataSource = self
         tableView.delegate = self
@@ -82,9 +82,13 @@ class HomeViewController: UIViewController,
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummyTitles.count
+        if section == 0 {
+            return activeCount
+        }
+        else {
+            return inactiveCount
+        }
     }
-    
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section]
     }
@@ -103,16 +107,33 @@ class HomeViewController: UIViewController,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCellWithIdentifier(Main.CellIdentifier, forIndexPath: indexPath) as! CellType
             // cell.selectionStyle = .None
-            // let section = indexPath.section
-            cell.titleLabel.text = dummyTitles[indexPath.item]
-            cell.subtitleLabel.text = dummySubtitles[indexPath.item]
+            let section = indexPath.section
+            var idx = 0
+            if section == 0 {
+                idx = indexPath.item
+            }
+            else {
+                idx = activeCount + indexPath.item
+            }
+            let title = "Class \(idx)"
+            cell.titleLabel.text = title
+            cell.subtitleLabel.text = "Class Description \(idx)"
             cell.bodyLabel.text = dummyText
             return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let dest = BoardViewController()
-        let titleText = dummyTitles[indexPath.item]
+        let section = indexPath.section
+        var idx = 0
+        if section == 0 {
+            idx = indexPath.item
+        }
+        else {
+            idx = activeCount + indexPath.item
+        }
+        let title = "Class \(idx)"
+        let titleText = title
         dest.navigationItem.title = titleText
         navigationController?.pushViewController(dest, animated: true)
     }

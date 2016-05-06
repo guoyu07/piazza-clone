@@ -19,6 +19,14 @@ extension UIView {
         self.addSubview(element)
     }
     
+    func addBorder<T: UIView>(myInput: T, height: CGFloat? = 1) {
+        let border = CALayer()
+        border.backgroundColor = UIColor(rgb: 0xCDCDCD).CGColor
+        border.frame = CGRect(x:0, y:myInput.frame.size.height-(1.0 + height!),
+            width: myInput.frame.size.width, height: height!)
+        myInput.layer.addSublayer(border)
+    }
+    
     func addUIElement<T: UIView>(element: T, text: String? = nil, frame: CGRect, onSuccess: (AnyObject)->() = {_ in } ){
         switch element {
         case let label as UILabel:

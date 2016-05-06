@@ -44,7 +44,10 @@ class ClassViewCell: UITableViewCell {
             label.textColor = UIColor(rgb: 0x2D83BD)
         }
         
-        
+    }
+    
+    func hideSettings() {
+        settingsLabel.frame.size = CGSizeZero
     }
     
     required init?(coder aDecoder: NSCoder) {

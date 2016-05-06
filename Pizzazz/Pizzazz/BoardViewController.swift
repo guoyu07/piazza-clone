@@ -20,7 +20,7 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
         static let CellClass = PostViewCell.self
     }
     let sections = ["Pinned", "Favorites", "Today", "Yesterday", "This Week", "Older"]
-    let dummyTitles = ["Question 1", "Question 2", "Question 3"]
+    let sectionRowCount = 3
     let dummyText = "I'm a post"
     let dummyStub = "Donald Drumf, 05/05/2016"
     
@@ -50,6 +50,16 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
         navigationController?.pushViewController(dest, animated: true)
     }
     
+    func rightButtonPressed() {
+        let dest = CourseInfoViewController()
+        let title = navigationItem.title!
+        let newTitle = "\(title) Course Information"
+        dest.navigationItem.title = newTitle
+        dest.dummyTitle = "\(title)"
+        dest.dummySubtitle = "Description \(title)"
+        navigationController?.pushViewController(dest, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view = UIView(frame: UIScreen.mainScreen().bounds)
@@ -58,13 +68,13 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
         let infoButton = UIButton()
         infoButton.setBackgroundImage(UIImage(named: "PaperIcon"), forState: .Normal)
         infoButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        infoButton.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
+        infoButton.addTarget(self, action: "rightButtonPressed", forControlEvents: .TouchUpInside)
         let infoBar = UIBarButtonItem(customView: infoButton)
         navigationItem.setRightBarButtonItem(infoBar, animated: true)
         
         w = view.bounds.size.width
         h = view.bounds.size.height
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: w, height: h))
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: w, height: h-50))
         tableView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         tableView.dataSource = self
         tableView.delegate = self
@@ -81,7 +91,7 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummyTitles.count
+        return sectionRowCount
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -101,8 +111,9 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCellWithIdentifier(Main.CellIdentifier, forIndexPath: indexPath) as! CellType
             // cell.selectionStyle = .None
-            // let section = indexPath.section
-            cell.titleLabel.text = dummyTitles[indexPath.item]
+            let section = indexPath.section
+            let idx = sectionRowCount*section + indexPath.item
+            cell.titleLabel.text = "Question \(idx)"
             cell.bodyLabel.text = dummyText
             cell.detailLabel.text = dummyStub
             return cell
