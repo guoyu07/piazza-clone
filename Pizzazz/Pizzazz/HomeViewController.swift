@@ -8,9 +8,12 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomeViewController: UIViewController,
+    UITableViewDataSource, UITableViewDelegate {
     
     var tableView: UITableView!
+    var w: CGFloat!
+    var h: CGFloat!
     
     typealias CellType = ClassViewCell
     private struct Main {
@@ -23,14 +26,44 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
      let dummySubtitles = ["Class One", "Class Two", "Class Three"]
      let dummyText = "University of Drumpf, Main Campus (America, United States of), Spring 2016"
     
+    func add() {
+        print("add pressed")
+    }
+    
+    func addToolbar() {
+        let toolbar = UIToolbar()
+        toolbar.barTintColor = UIColor(white: 0.95, alpha: 1.0)
+        
+        let moreButton = UIButton()
+        moreButton.setBackgroundImage(UIImage(named: "MoreIcon"), forState: .Normal)
+        moreButton.frame = CGRect(x: 0, y: 0, width: 21, height: 7)
+        moreButton.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
+        
+        let accountButton = UIButton()
+        accountButton.setTitle("Account", forState: .Normal)
+        accountButton.titleLabel?.font = UIFont(name: "Helvetica", size: 10)
+        accountButton.setTitleColor(UIColor(rgb: 0x3e7aab), forState: .Normal)
+        accountButton.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
+        accountButton.frame = CGRect(x: 0, y: 0, width: 40, height: 20)
+        
+        let item1 = UIBarButtonItem(customView: moreButton)
+        let item2 = UIBarButtonItem(customView: accountButton)
+        let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: self, action: nil)
+        
+        toolbar.setItems([item1, spacer, item2], animated: true)
+        view.addUIElement(toolbar, frame: CGRect(x: 0, y: h-30, width: w, height: 30))
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view = UIView(frame: UIScreen.mainScreen().bounds)
         view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         
-        let w = view.bounds.size.width
-        let h = view.bounds.size.height
+        w = view.bounds.size.width
+        h = view.bounds.size.height
         navigationItem.title = "Classes"
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "add")
+        navigationItem.setRightBarButtonItem(addButton, animated: true)
         
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: w, height: h))
         // want y= 20 if no navigation
@@ -42,7 +75,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // tableView.separatorStyle = .None
         tableView.rowHeight = 102
         view.addSubview(tableView)
-        
+        addToolbar()
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

@@ -11,6 +11,8 @@ import UIKit
 class BoardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var tableView: UITableView!
+    var w: CGFloat!
+    var h: CGFloat!
     
     typealias CellType = PostViewCell
     private struct Main {
@@ -22,13 +24,32 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
     let dummyText = "I'm a post"
     let dummyStub = "Donald Drumf, 05/05/2016"
     
+    func addToolbar() {
+        let toolbar = UIToolbar()
+        toolbar.barTintColor = UIColor(white: 0.95, alpha: 1.0)
+        
+        let moreButton = UIButton()
+        moreButton.setBackgroundImage(UIImage(named: "MoreIcon"), forState: .Normal)
+        moreButton.frame = CGRect(x: 0, y: 0, width: 21, height: 7)
+        moreButton.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
+        
+        let composeButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: nil)
+        composeButton.width = 40
+        
+        let item1 = UIBarButtonItem(customView: moreButton)
+        let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: self, action: nil)
+        
+        toolbar.setItems([item1, spacer, composeButton], animated: true)
+        view.addUIElement(toolbar, frame: CGRect(x: 0, y: h-30, width: w, height: 30))
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view = UIView(frame: UIScreen.mainScreen().bounds)
         view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         
-        let w = view.bounds.size.width
-        let h = view.bounds.size.height
+        w = view.bounds.size.width
+        h = view.bounds.size.height
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: w, height: h))
         tableView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         tableView.dataSource = self
@@ -37,6 +58,7 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
             forCellReuseIdentifier: Main.CellIdentifier)
         tableView.rowHeight = 80
         view.addSubview(tableView)
+        addToolbar()
         
     }
     
