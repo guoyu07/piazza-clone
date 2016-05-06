@@ -34,6 +34,15 @@ class ContinuedQuestionViewController: UIViewController, UITextViewDelegate {
             myInput.delegate = self
         }
     }
+    func rightButtonPressed() {
+        let allVC = self.navigationController?.viewControllers
+        if let destVC = allVC![allVC!.count - 2] as? BoardViewController {
+            navigationController?.popToViewController(destVC, animated: true)
+        }
+        else {
+             navigationController?.popToRootViewControllerAnimated(true)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +56,7 @@ class ContinuedQuestionViewController: UIViewController, UITextViewDelegate {
         rightButton.setTitle("Post", forState: .Normal)
         rightButton.titleLabel?.font = UIFont(name: "Helvetica", size: 16)
         rightButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        rightButton.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
+        rightButton.addTarget(self, action: "rightButtonPressed", forControlEvents: .TouchUpInside)
         rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
         
         let rightBar = UIBarButtonItem(customView: rightButton)

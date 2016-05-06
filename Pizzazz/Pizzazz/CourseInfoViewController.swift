@@ -52,14 +52,6 @@ class CourseInfoViewController: UIViewController,
         super.viewDidLoad()
         view = UIView(frame: UIScreen.mainScreen().bounds)
         view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
-        
-        let infoButton = UIButton()
-        infoButton.setBackgroundImage(UIImage(named: "PaperIcon"), forState: .Normal)
-        infoButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        infoButton.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
-        let infoBar = UIBarButtonItem(customView: infoButton)
-        navigationItem.setRightBarButtonItem(infoBar, animated: true)
-        
         w = view.bounds.size.width
         h = view.bounds.size.height
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: w, height: h-50))
