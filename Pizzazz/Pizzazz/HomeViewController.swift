@@ -35,8 +35,8 @@ class HomeViewController: UIViewController,
         toolbar.barTintColor = UIColor(white: 0.95, alpha: 1.0)
         
         let moreButton = UIButton()
-        moreButton.setBackgroundImage(UIImage(named: "MoreIcon"), forState: .Normal)
-        moreButton.frame = CGRect(x: 0, y: 0, width: 21, height: 7)
+        moreButton.setBackgroundImage(UIImage(named: "More500"), forState: .Normal)
+        moreButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         moreButton.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
         
         let accountButton = UIButton()
@@ -66,7 +66,6 @@ class HomeViewController: UIViewController,
         navigationItem.setRightBarButtonItem(addButton, animated: true)
         
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: w, height: h))
-        // want y= 20 if no navigation
         tableView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         tableView.dataSource = self
         tableView.delegate = self

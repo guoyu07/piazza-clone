@@ -29,8 +29,8 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
         toolbar.barTintColor = UIColor(white: 0.95, alpha: 1.0)
         
         let moreButton = UIButton()
-        moreButton.setBackgroundImage(UIImage(named: "MoreIcon"), forState: .Normal)
-        moreButton.frame = CGRect(x: 0, y: 0, width: 21, height: 7)
+        moreButton.setBackgroundImage(UIImage(named: "More500"), forState: .Normal)
+        moreButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         moreButton.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
         
         let composeButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: nil)
@@ -47,6 +47,13 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         view = UIView(frame: UIScreen.mainScreen().bounds)
         view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
+        
+        let infoButton = UIButton()
+        infoButton.setBackgroundImage(UIImage(named: "PaperIcon"), forState: .Normal)
+        infoButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        infoButton.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
+        let infoBar = UIBarButtonItem(customView: infoButton)
+        navigationItem.setRightBarButtonItem(infoBar, animated: true)
         
         w = view.bounds.size.width
         h = view.bounds.size.height
