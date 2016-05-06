@@ -17,20 +17,20 @@ class PostViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let w = UIScreen.mainScreen().bounds.size.width
-        contentView.addUIElement(titleLabel, frame: CGRect(x: 25, y: 8, width: w-25, height: 12))  {element in
+        contentView.addUIElement(titleLabel, frame: CGRect(x: 30, y: 8, width: w-30, height: 20))  {element in
             guard let label = element as? UILabel else { return }
-            let font = UIFont(name: "Helvetica-Bold", size: 13)
+            let font = UIFont(name: "Helvetica-Bold", size: 16)
             label.font = font
         }
-        contentView.addUIElement(bodyLabel, frame: CGRect(x: 25, y: 20, width: w-25, height: 30))  {element in
+        contentView.addUIElement(bodyLabel, frame: CGRect(x: 30, y: 25, width: w-30, height: 30))  {element in
             guard let label = element as? UILabel else { return }
-            let font = UIFont(name: "HelveticaNeue", size: 12)
+            let font = UIFont(name: "HelveticaNeue", size: 16)
             label.font = font
             label.textColor = UIColor(white: 0.5, alpha: 1.0)
         }
-        contentView.addUIElement(detailLabel, frame: CGRect(x: 25, y: 60, width: w-50, height: 12))  {element in
+        contentView.addUIElement(detailLabel, frame: CGRect(x: 30, y: 60, width: w-50, height: 12))  {element in
             guard let label = element as? UILabel else { return }
-            let font = UIFont(name: "HelveticaNeue", size: 10)
+            let font = UIFont(name: "HelveticaNeue", size: 12)
             label.font = font
             label.textAlignment = .Right
             label.textColor = UIColor(white: 0.5, alpha: 1.0)

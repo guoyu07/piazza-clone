@@ -18,8 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let nav = UINavigationController()
-        // let tabs = UITabBarController()
-        // tabs.viewControllers = [nav]
         nav.navigationBar.barTintColor = UIColor(rgb: 0x3e7aab)
         nav.navigationBar.tintColor = UIColor.whiteColor()
         let navigationBarAppearace = UINavigationBar.appearance()

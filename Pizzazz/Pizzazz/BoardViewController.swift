@@ -29,8 +29,10 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
         toolbar.barTintColor = UIColor(white: 0.95, alpha: 1.0)
         
         let moreButton = UIButton()
-        moreButton.setBackgroundImage(UIImage(named: "More500"), forState: .Normal)
-        moreButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+//        moreButton.setBackgroundImage(UIImage(named: "More500"), forState: .Normal)
+//        moreButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        moreButton.setBackgroundImage(UIImage(named: "MoreIcon"), forState: .Normal)
+        moreButton.frame = CGRect(x: 0, y: 0, width: 30, height: 10)
         moreButton.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
         
         let composeButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: nil)
@@ -40,7 +42,7 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
         let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: self, action: nil)
         
         toolbar.setItems([item1, spacer, composeButton], animated: true)
-        view.addUIElement(toolbar, frame: CGRect(x: 0, y: h-30, width: w, height: 30))
+        view.addUIElement(toolbar, frame: CGRect(x: 0, y: h-40, width: w, height: 40))
     }
     
     override func viewDidLoad() {
@@ -80,13 +82,13 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section]
     }
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 32
+    }
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UITableViewCell()
-        headerView.backgroundColor = UIColor(rgb: 0xeff0f1)
+        let headerView = HeaderViewCell()
         let text = sections[section]
-        let font = UIFont(name: "HelveticaNeue", size: 12)
-        headerView.textLabel?.text = text
-        headerView.textLabel?.font = font
+        headerView.titleLabel.text = text
         return headerView
     }
     

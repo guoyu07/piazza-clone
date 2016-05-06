@@ -35,23 +35,23 @@ class HomeViewController: UIViewController,
         toolbar.barTintColor = UIColor(white: 0.95, alpha: 1.0)
         
         let moreButton = UIButton()
-        moreButton.setBackgroundImage(UIImage(named: "More500"), forState: .Normal)
-        moreButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        moreButton.setBackgroundImage(UIImage(named: "MoreIcon"), forState: .Normal)
+        moreButton.frame = CGRect(x: 0, y: 0, width: 30, height: 10)
         moreButton.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
         
         let accountButton = UIButton()
         accountButton.setTitle("Account", forState: .Normal)
-        accountButton.titleLabel?.font = UIFont(name: "Helvetica", size: 10)
+        accountButton.titleLabel?.font = UIFont(name: "Helvetica", size: 11)
         accountButton.setTitleColor(UIColor(rgb: 0x3e7aab), forState: .Normal)
         accountButton.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
-        accountButton.frame = CGRect(x: 0, y: 0, width: 40, height: 20)
+        accountButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
         
         let item1 = UIBarButtonItem(customView: moreButton)
         let item2 = UIBarButtonItem(customView: accountButton)
         let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: self, action: nil)
         
         toolbar.setItems([item1, spacer, item2], animated: true)
-        view.addUIElement(toolbar, frame: CGRect(x: 0, y: h-30, width: w, height: 30))
+        view.addUIElement(toolbar, frame: CGRect(x: 0, y: h-40, width: w, height: 40))
     }
     
     override func viewDidLoad() {
@@ -72,7 +72,7 @@ class HomeViewController: UIViewController,
         tableView.registerClass(Main.CellClass,
                                 forCellReuseIdentifier: Main.CellIdentifier)
         // tableView.separatorStyle = .None
-        tableView.rowHeight = 102
+        tableView.rowHeight = 120
         view.addSubview(tableView)
         addToolbar()
     }
@@ -88,13 +88,14 @@ class HomeViewController: UIViewController,
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section]
     }
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 32
+    }
+    
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UITableViewCell()
-        headerView.backgroundColor = UIColor(rgb: 0xeff0f1)
+        let headerView = HeaderViewCell()
         let text = sections[section]
-        let font = UIFont(name: "HelveticaNeue", size: 12)
-        headerView.textLabel?.text = text
-        headerView.textLabel?.font = font
+        headerView.titleLabel.text = text
         return headerView
     }
     

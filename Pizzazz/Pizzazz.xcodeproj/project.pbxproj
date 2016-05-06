@@ -18,6 +18,7 @@
 		242912DE1CDC38AA008DF27F /* ClassViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242912DD1CDC38AA008DF27F /* ClassViewCell.swift */; };
 		242912E11CDC6C6F008DF27F /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242912E01CDC6C6F008DF27F /* BoardViewController.swift */; };
 		242912E31CDC6DFD008DF27F /* PostViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242912E21CDC6DFD008DF27F /* PostViewCell.swift */; };
+		242912E51CDC94C1008DF27F /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242912E41CDC94C1008DF27F /* HeaderViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		242912DD1CDC38AA008DF27F /* ClassViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassViewCell.swift; sourceTree = "<group>"; };
 		242912E01CDC6C6F008DF27F /* BoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
 		242912E21CDC6DFD008DF27F /* PostViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewCell.swift; sourceTree = "<group>"; };
+		242912E41CDC94C1008DF27F /* HeaderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 			children = (
 				242912DD1CDC38AA008DF27F /* ClassViewCell.swift */,
 				242912E21CDC6DFD008DF27F /* PostViewCell.swift */,
+				242912E41CDC94C1008DF27F /* HeaderViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				242912E31CDC6DFD008DF27F /* PostViewCell.swift in Sources */,
 				242912DB1CDC371E008DF27F /* StringAndDateExtension.swift in Sources */,
 				242912D71CDC3634008DF27F /* ViewExtension.swift in Sources */,
+				242912E51CDC94C1008DF27F /* HeaderViewCell.swift in Sources */,
 				242912B81CDC34E1008DF27F /* HomeViewController.swift in Sources */,
 				242912DE1CDC38AA008DF27F /* ClassViewCell.swift in Sources */,
 				242912B61CDC34E1008DF27F /* AppDelegate.swift in Sources */,
