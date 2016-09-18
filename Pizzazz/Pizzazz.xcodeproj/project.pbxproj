@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		242912B61CDC34E1008DF27F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242912B51CDC34E1008DF27F /* AppDelegate.swift */; };
 		242912B81CDC34E1008DF27F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242912B71CDC34E1008DF27F /* HomeViewController.swift */; };
-		242912BB1CDC34E1008DF27F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 242912B91CDC34E1008DF27F /* Main.storyboard */; };
 		242912BD1CDC34E1008DF27F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 242912BC1CDC34E1008DF27F /* Assets.xcassets */; };
-		242912C01CDC34E1008DF27F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 242912BE1CDC34E1008DF27F /* LaunchScreen.storyboard */; };
 		242912CB1CDC34E1008DF27F /* PizzazzTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242912CA1CDC34E1008DF27F /* PizzazzTests.swift */; };
 		242912D71CDC3634008DF27F /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242912D61CDC3634008DF27F /* ViewExtension.swift */; };
 		242912DB1CDC371E008DF27F /* StringAndDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242912DA1CDC371E008DF27F /* StringAndDateExtension.swift */; };
@@ -40,9 +38,7 @@
 		242912B21CDC34E1008DF27F /* Pizzazz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pizzazz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		242912B51CDC34E1008DF27F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		242912B71CDC34E1008DF27F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		242912BA1CDC34E1008DF27F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		242912BC1CDC34E1008DF27F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		242912BF1CDC34E1008DF27F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		242912C11CDC34E1008DF27F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		242912C61CDC34E1008DF27F /* PizzazzTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PizzazzTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		242912CA1CDC34E1008DF27F /* PizzazzTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PizzazzTests.swift; sourceTree = "<group>"; };
@@ -108,9 +104,7 @@
 				242912EA1CDD2FD4008DF27F /* CourseInfoViewController.swift */,
 				242912E61CDD1A32008DF27F /* NewQuestionViewController.swift */,
 				242912E81CDD2C7A008DF27F /* ContinuedQuestionViewController.swift */,
-				242912B91CDC34E1008DF27F /* Main.storyboard */,
 				242912BC1CDC34E1008DF27F /* Assets.xcassets */,
-				242912BE1CDC34E1008DF27F /* LaunchScreen.storyboard */,
 				242912C11CDC34E1008DF27F /* Info.plist */,
 			);
 			path = Pizzazz;
@@ -198,14 +192,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = zzeleznick;
 				TargetAttributes = {
 					242912B11CDC34E1008DF27F = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					242912C51CDC34E1008DF27F = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 						TestTargetID = 242912B11CDC34E1008DF27F;
 					};
 				};
@@ -234,9 +230,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				242912C01CDC34E1008DF27F /* LaunchScreen.storyboard in Resources */,
 				242912BD1CDC34E1008DF27F /* Assets.xcassets in Resources */,
-				242912BB1CDC34E1008DF27F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,25 +282,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		242912B91CDC34E1008DF27F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				242912BA1CDC34E1008DF27F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		242912BE1CDC34E1008DF27F /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				242912BF1CDC34E1008DF27F /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		242912CD1CDC34E1008DF27F /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -321,8 +296,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -365,8 +342,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -385,6 +364,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -398,6 +378,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = z.Pizzazz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -410,6 +391,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = z.Pizzazz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -421,6 +403,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = z.PizzazzTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pizzazz.app/Pizzazz";
 			};
 			name = Debug;
@@ -433,6 +416,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = z.PizzazzTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pizzazz.app/Pizzazz";
 			};
 			name = Release;

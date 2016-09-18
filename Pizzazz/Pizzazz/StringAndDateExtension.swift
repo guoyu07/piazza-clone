@@ -9,26 +9,26 @@ import Foundation
 
 extension String {
     
-    static func random(length: Int = 20) -> String {
+    static func random(_ length: Int = 20) -> String {
         
         let base = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         var randomString: String = ""
         
         for _ in 0..<length {
             let randomValue = arc4random_uniform(UInt32(base.characters.count))
-            randomString += "\(base[base.startIndex.advancedBy(Int(randomValue))])"
+            randomString += "\(base[base.characters.index(base.startIndex, offsetBy: Int(randomValue))])"
         }
         
         return randomString
     }
 }
 
-extension NSDate
+extension Date
 {
-    static func shortStringFromDate(date: NSDate) -> String
+    static func shortStringFromDate(_ date: Date) -> String
     {
-        let formatter = NSDateFormatter()
-        formatter.dateStyle = NSDateFormatterStyle.ShortStyle
-        return formatter.stringFromDate(date)
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.short
+        return formatter.string(from: date)
     }
 }

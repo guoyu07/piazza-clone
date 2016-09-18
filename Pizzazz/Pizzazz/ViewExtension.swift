@@ -13,21 +13,21 @@ import UIKit
 
 extension UIView {
     
-    func placeUIElement<T: UIView>(element: T, frame: CGRect) {
+    func placeUIElement<T: UIView>(_ element: T, frame: CGRect) {
         // print(frame)
         element.frame = frame
         self.addSubview(element)
     }
     
-    func addBorder<T: UIView>(myInput: T, height: CGFloat? = 1) {
+    func addBorder<T: UIView>(_ myInput: T, height: CGFloat? = 1) {
         let border = CALayer()
-        border.backgroundColor = UIColor(rgb: 0xCDCDCD).CGColor
+        border.backgroundColor = UIColor(rgb: 0xCDCDCD).cgColor
         border.frame = CGRect(x:0, y:myInput.frame.size.height-(1.0 + height!),
             width: myInput.frame.size.width, height: height!)
         myInput.layer.addSublayer(border)
     }
     
-    func addUIElement<T: UIView>(element: T, text: String? = nil, frame: CGRect, onSuccess: (AnyObject)->() = {_ in } ){
+    func addUIElement<T: UIView>(_ element: T, text: String? = nil, frame: CGRect, onSuccess: (AnyObject)->() = {_ in } ){
         switch element {
         case let label as UILabel:
             label.text = text
@@ -37,14 +37,14 @@ extension UIView {
         case let field as UITextView:
             field.text = text
         case let button as UIButton:
-            button.setTitle(text, forState: .Normal)
+            button.setTitle(text, for: UIControlState())
         case let image as UIImageView:
-            image.contentMode = .ScaleAspectFill
+            image.contentMode = .scaleAspectFill
             image.clipsToBounds = true
         case _ as UICollectionView:
             break // pass
         case let container as UIVisualEffectView:
-            container.effect =  UIBlurEffect(style: UIBlurEffectStyle.Light)
+            container.effect =  UIBlurEffect(style: UIBlurEffectStyle.light)
         default:
             break // print("I don't know my type")
         }

@@ -15,7 +15,7 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
     var h: CGFloat!
     
     typealias CellType = PostViewCell
-    private struct Main {
+    fileprivate struct Main {
         static let CellIdentifier = "cell"
         static let CellClass = PostViewCell.self
     }
@@ -31,15 +31,14 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
         let moreButton = UIButton()
 //        moreButton.setBackgroundImage(UIImage(named: "More500"), forState: .Normal)
 //        moreButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        moreButton.setBackgroundImage(UIImage(named: "MoreIcon"), forState: .Normal)
+        moreButton.setBackgroundImage(UIImage(named: "MoreIcon"), for: UIControlState())
         moreButton.frame = CGRect(x: 0, y: 0, width: 30, height: 10)
-        moreButton.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
-        
-        let composeButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: "composeButtonPressed")
+
+        let composeButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(BoardViewController.composeButtonPressed))
         composeButton.width = 40
         
         let item1 = UIBarButtonItem(customView: moreButton)
-        let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: self, action: nil)
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         
         toolbar.setItems([item1, spacer, composeButton], animated: true)
         view.addUIElement(toolbar, frame: CGRect(x: 0, y: h-40, width: w, height: 40))
@@ -62,15 +61,15 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = UIView(frame: UIScreen.mainScreen().bounds)
+        view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         
         let infoButton = UIButton()
-        infoButton.setBackgroundImage(UIImage(named: "PaperIcon"), forState: .Normal)
+        infoButton.setBackgroundImage(UIImage(named: "PaperIcon"), for: UIControlState())
         infoButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        infoButton.addTarget(self, action: "rightButtonPressed", forControlEvents: .TouchUpInside)
+        infoButton.addTarget(self, action: #selector(BoardViewController.rightButtonPressed), for: .touchUpInside)
         let infoBar = UIBarButtonItem(customView: infoButton)
-        navigationItem.setRightBarButtonItem(infoBar, animated: true)
+        navigationItem.setRightBarButton(infoBar, animated: true)
         
         w = view.bounds.size.width
         h = view.bounds.size.height
@@ -78,7 +77,7 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.registerClass(Main.CellClass,
+        tableView.register(Main.CellClass,
             forCellReuseIdentifier: Main.CellIdentifier)
         tableView.rowHeight = 80
         view.addSubview(tableView)
@@ -86,33 +85,33 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sectionRowCount
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section]
     }
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 32
     }
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = HeaderViewCell()
         let text = sections[section]
         headerView.titleLabel.text = text
         return headerView
     }
     
-    func tableView(tableView: UITableView,
-        cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCellWithIdentifier(Main.CellIdentifier, forIndexPath: indexPath) as! CellType
+    func tableView(_ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Main.CellIdentifier, for: indexPath) as! CellType
             // cell.selectionStyle = .None
-            let section = indexPath.section
-            let idx = sectionRowCount*section + indexPath.item
+            let section = (indexPath as NSIndexPath).section
+            let idx = sectionRowCount*section + (indexPath as NSIndexPath).item
             cell.titleLabel.text = "Question \(idx)"
             cell.bodyLabel.text = dummyText
             cell.detailLabel.text = dummyStub

@@ -15,7 +15,7 @@ class ClassInfoViewCell: UITableViewCell {
     
     var lines: [String]! {
         willSet(values) {
-            for (idx, name) in values.enumerate() {
+            for (idx, name) in values.enumerated() {
                 let label = UILabel()
                 let font = UIFont(name: "Helvetica", size: 12)
                 label.font = font
@@ -30,7 +30,7 @@ class ClassInfoViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        w = UIScreen.mainScreen().bounds.size.width
+        w = UIScreen.main.bounds.size.width
     }
     
     required init?(coder aDecoder: NSCoder) {

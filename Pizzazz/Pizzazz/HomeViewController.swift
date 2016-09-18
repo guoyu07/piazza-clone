@@ -16,7 +16,7 @@ class HomeViewController: UIViewController,
     var h: CGFloat!
     
     typealias CellType = ClassViewCell
-    private struct Main {
+    fileprivate struct Main {
         static let CellIdentifier = "cell"
         static let CellClass = ClassViewCell.self
     }
@@ -35,20 +35,18 @@ class HomeViewController: UIViewController,
         toolbar.barTintColor = UIColor(white: 0.95, alpha: 1.0)
         
         let moreButton = UIButton()
-        moreButton.setBackgroundImage(UIImage(named: "MoreIcon"), forState: .Normal)
+        moreButton.setBackgroundImage(UIImage(named: "MoreIcon"), for: UIControlState())
         moreButton.frame = CGRect(x: 0, y: 0, width: 30, height: 10)
-        moreButton.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
         
         let accountButton = UIButton()
-        accountButton.setTitle("Account", forState: .Normal)
+        accountButton.setTitle("Account", for: UIControlState())
         accountButton.titleLabel?.font = UIFont(name: "Helvetica", size: 11)
-        accountButton.setTitleColor(UIColor(rgb: 0x3e7aab), forState: .Normal)
-        accountButton.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
+        accountButton.setTitleColor(UIColor(rgb: 0x3e7aab), for: UIControlState())
         accountButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
         
         let item1 = UIBarButtonItem(customView: moreButton)
         let item2 = UIBarButtonItem(customView: accountButton)
-        let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: self, action: nil)
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         
         toolbar.setItems([item1, spacer, item2], animated: true)
         view.addUIElement(toolbar, frame: CGRect(x: 0, y: h-40, width: w, height: 40))
@@ -56,20 +54,20 @@ class HomeViewController: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = UIView(frame: UIScreen.mainScreen().bounds)
+        view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         
         w = view.bounds.size.width
         h = view.bounds.size.height
         navigationItem.title = "Classes"
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "add")
-        navigationItem.setRightBarButtonItem(addButton, animated: true)
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(HomeViewController.add))
+        navigationItem.setRightBarButton(addButton, animated: true)
         
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: w, height: h-50))
         tableView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.registerClass(Main.CellClass,
+        tableView.register(Main.CellClass,
                                 forCellReuseIdentifier: Main.CellIdentifier)
         // tableView.separatorStyle = .None
         tableView.rowHeight = 120
@@ -77,11 +75,11 @@ class HomeViewController: UIViewController,
         addToolbar()
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return activeCount
         }
@@ -89,31 +87,31 @@ class HomeViewController: UIViewController,
             return inactiveCount
         }
     }
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section]
     }
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 32
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = HeaderViewCell()
         let text = sections[section]
         headerView.titleLabel.text = text
         return headerView
     }
     
-    func tableView(tableView: UITableView,
-        cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCellWithIdentifier(Main.CellIdentifier, forIndexPath: indexPath) as! CellType
+    func tableView(_ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Main.CellIdentifier, for: indexPath) as! CellType
             // cell.selectionStyle = .None
-            let section = indexPath.section
+            let section = (indexPath as NSIndexPath).section
             var idx = 0
             if section == 0 {
-                idx = indexPath.item
+                idx = (indexPath as NSIndexPath).item
             }
             else {
-                idx = activeCount + indexPath.item
+                idx = activeCount + (indexPath as NSIndexPath).item
             }
             let title = "Class \(idx)"
             cell.titleLabel.text = title
@@ -122,15 +120,15 @@ class HomeViewController: UIViewController,
             return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dest = BoardViewController()
-        let section = indexPath.section
+        let section = (indexPath as NSIndexPath).section
         var idx = 0
         if section == 0 {
-            idx = indexPath.item
+            idx = (indexPath as NSIndexPath).item
         }
         else {
-            idx = activeCount + indexPath.item
+            idx = activeCount + (indexPath as NSIndexPath).item
         }
         let title = "Class \(idx)"
         let titleText = title

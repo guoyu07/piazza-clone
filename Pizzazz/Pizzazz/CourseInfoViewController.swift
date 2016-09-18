@@ -15,17 +15,17 @@ class CourseInfoViewController: UIViewController,
     var h: CGFloat!
     
     typealias CellType = ClassViewCell
-    private struct Main {
+    fileprivate struct Main {
         static let CellIdentifier = "cell"
         static let CellClass = ClassViewCell.self
     }
     typealias InfoCellType = ClassInfoViewCell
-    private struct Info {
+    fileprivate struct Info {
         static let CellIdentifier = "infoCell"
         static let CellClass = ClassInfoViewCell.self
     }
     typealias SecondaryCellType = StaffViewCell
-    private struct Secondary {
+    fileprivate struct Secondary {
         static let CellIdentifier = "staffCell"
         static let CellClass = StaffViewCell.self
     }
@@ -50,7 +50,7 @@ class CourseInfoViewController: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = UIView(frame: UIScreen.mainScreen().bounds)
+        view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         w = view.bounds.size.width
         h = view.bounds.size.height
@@ -58,11 +58,11 @@ class CourseInfoViewController: UIViewController,
         tableView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.registerClass(Main.CellClass,
+        tableView.register(Main.CellClass,
             forCellReuseIdentifier: Main.CellIdentifier)
-        tableView.registerClass(Info.CellClass,
+        tableView.register(Info.CellClass,
             forCellReuseIdentifier: Info.CellIdentifier)
-        tableView.registerClass(Secondary.CellClass,
+        tableView.register(Secondary.CellClass,
             forCellReuseIdentifier: Secondary.CellIdentifier)
         tableView.rowHeight = 90
         view.addSubview(tableView)
@@ -70,22 +70,22 @@ class CourseInfoViewController: UIViewController,
         
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section]
     }
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 32
     }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let section = indexPath.section
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let section = (indexPath as NSIndexPath).section
         if section == 1{
             return 80
         }
@@ -94,31 +94,31 @@ class CourseInfoViewController: UIViewController,
         }
         return 100
     }
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = HeaderViewCell()
         let text = sections[section]
         headerView.titleLabel.text = text
         return headerView
     }
     
-    func tableView(tableView: UITableView,
-        cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            let section = indexPath.section
+    func tableView(_ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let section = (indexPath as NSIndexPath).section
             if section == 1 {
-                let cell = tableView.dequeueReusableCellWithIdentifier(Info.CellIdentifier, forIndexPath: indexPath) as! InfoCellType
-                cell.selectionStyle = .None
+                let cell = tableView.dequeueReusableCell(withIdentifier: Info.CellIdentifier, for: indexPath) as! InfoCellType
+                cell.selectionStyle = .none
                 cell.lines = info
                 return cell
             }
             else if section == 2 {
-                let cell = tableView.dequeueReusableCellWithIdentifier(Secondary.CellIdentifier, forIndexPath: indexPath) as! SecondaryCellType
-                cell.selectionStyle = .None
+                let cell = tableView.dequeueReusableCell(withIdentifier: Secondary.CellIdentifier, for: indexPath) as! SecondaryCellType
+                cell.selectionStyle = .none
                 cell.names = staffNames
                 return cell
             }
             else {
-                let cell = tableView.dequeueReusableCellWithIdentifier(Main.CellIdentifier, forIndexPath: indexPath) as! CellType
-                cell.selectionStyle = .None
+                let cell = tableView.dequeueReusableCell(withIdentifier: Main.CellIdentifier, for: indexPath) as! CellType
+                cell.selectionStyle = .none
                 cell.titleLabel.text = dummyTitle
                 cell.subtitleLabel.text = dummySubtitle
                 cell.bodyLabel.text = dummyText

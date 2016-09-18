@@ -28,7 +28,7 @@ class NewQuestionViewController: UIViewController, UITextViewDelegate {
         view.addUIElement(questionBody, text: bodyPlaceholder, frame: bodyFrame) { element in
             guard let myInput = element as? UITextView else { return }
             // myInput.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
-            myInput.textColor = UIColor.lightGrayColor()
+            myInput.textColor = UIColor.lightGray
             myInput.font = UIFont(name: "Helvetica", size: 16)
             self.view.addBorder(myInput)
             myInput.delegate = self
@@ -42,7 +42,7 @@ class NewQuestionViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = UIView(frame: UIScreen.mainScreen().bounds)
+        view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         w = view.bounds.size.width
         h = view.bounds.size.height
@@ -50,28 +50,28 @@ class NewQuestionViewController: UIViewController, UITextViewDelegate {
         navBarHeight = navigationController?.navigationBar.frame.height
         
         let rightButton = UIButton()
-        rightButton.setTitle("Next", forState: .Normal)
+        rightButton.setTitle("Next", for: UIControlState())
         rightButton.titleLabel?.font = UIFont(name: "Helvetica", size: 16)
-        rightButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        rightButton.addTarget(self, action: "rightButtonPressed", forControlEvents: .TouchUpInside)
+        rightButton.setTitleColor(UIColor.white, for: UIControlState())
+        rightButton.addTarget(self, action: #selector(NewQuestionViewController.rightButtonPressed), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
         
         let rightBar = UIBarButtonItem(customView: rightButton)
-        navigationItem.setRightBarButtonItem(rightBar, animated: true)
+        navigationItem.setRightBarButton(rightBar, animated: true)
         placeFields()
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         if (questionBody.text == bodyPlaceholder) {
             questionBody.text = nil
-            questionBody.textColor = UIColor.blackColor()
+            questionBody.textColor = UIColor.black
         }
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         if questionBody.text.isEmpty {
             questionBody.text = bodyPlaceholder
-            questionBody.textColor = UIColor.lightGrayColor()
+            questionBody.textColor = UIColor.lightGray
         }
         textView.resignFirstResponder()
     }

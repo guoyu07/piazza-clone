@@ -29,7 +29,7 @@ class ContinuedQuestionViewController: UIViewController, UITextViewDelegate {
         view.addUIElement(fileButton, text: "Add a File", frame: bodyFrame) { element in
             guard let myInput = element as? UITextView else { return }
             // myInput.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
-            myInput.textColor = UIColor.lightGrayColor()
+            myInput.textColor = UIColor.lightGray
             myInput.font = UIFont(name: "Helvetica", size: 16)
             myInput.delegate = self
         }
@@ -40,27 +40,27 @@ class ContinuedQuestionViewController: UIViewController, UITextViewDelegate {
             navigationController?.popToViewController(destVC, animated: true)
         }
         else {
-             navigationController?.popToRootViewControllerAnimated(true)
+             navigationController?.popToRootViewController(animated: true)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = UIView(frame: UIScreen.mainScreen().bounds)
+        view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         w = view.bounds.size.width
         h = view.bounds.size.height
         navigationItem.title = "New Question"
         navBarHeight = navigationController?.navigationBar.frame.height
         let rightButton = UIButton()
-        rightButton.setTitle("Post", forState: .Normal)
+        rightButton.setTitle("Post", for: UIControlState())
         rightButton.titleLabel?.font = UIFont(name: "Helvetica", size: 16)
-        rightButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        rightButton.addTarget(self, action: "rightButtonPressed", forControlEvents: .TouchUpInside)
+        rightButton.setTitleColor(UIColor.white, for: UIControlState())
+        rightButton.addTarget(self, action: #selector(ContinuedQuestionViewController.rightButtonPressed), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
         
         let rightBar = UIBarButtonItem(customView: rightButton)
-        navigationItem.setRightBarButtonItem(rightBar, animated: true)
+        navigationItem.setRightBarButton(rightBar, animated: true)
         placeFields()
     }
     

@@ -19,7 +19,7 @@ class ClassViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        let w = UIScreen.mainScreen().bounds.size.width
+        let w = UIScreen.main.bounds.size.width
         contentView.addUIElement(titleLabel, frame: CGRect(x: 30, y: 8, width: w-30, height: 20))  {element in
             guard let label = element as? UILabel else { return }
             let font = UIFont(name: "Helvetica-Bold", size: 16)
@@ -47,7 +47,7 @@ class ClassViewCell: UITableViewCell {
     }
     
     func hideSettings() {
-        settingsLabel.frame.size = CGSizeZero
+        settingsLabel.frame.size = CGSize.zero
     }
     
     required init?(coder aDecoder: NSCoder) {
