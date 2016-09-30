@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContinuedQuestionViewController: ViewController, UITextViewDelegate {
+class ContinuedQuestionViewController: ViewController {
     
     var navBarHeight: CGFloat!
     let navOffset:CGFloat = 20
@@ -18,18 +18,30 @@ class ContinuedQuestionViewController: ViewController, UITextViewDelegate {
     let photoButton = UIButton()
     
     func placeFields() {
-        print(navBarHeight)
-        let titleFrame = CGRect(x: 20, y: navBarHeight + navOffset+5, width: w-20, height: 40)
-        view.addUIElement(folderButton, text: "Add Folder", frame: titleFrame) { element in
-            guard let myInput = element as? UITextField else { return }
+        
+        let titleFrame = CGRect(x: 20, y: navBarHeight + navOffset+25,
+                                width: 120, height: 30)
+        view.addUIElement(folderButton, text: "add folder",
+                          frame: titleFrame) { element in
+            guard let button = element as? UIButton else { return }
+            button.setTitleColor(UIColor.blue, for: .normal)
+            button.contentHorizontalAlignment = .left
         }
-        let bodyFrame = CGRect(x: 18, y: navBarHeight + navOffset+46, width: w-18, height: h - (navBarHeight + navOffset + 60))
-        view.addUIElement(fileButton, text: "Add a File", frame: bodyFrame) { element in
-            guard let myInput = element as? UITextView else { return }
-            // myInput.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
-            myInput.textColor = UIColor.lightGray
-            myInput.font = UIFont(name: "Helvetica", size: 16)
-            myInput.delegate = self
+        let sFrame = CGRect(x: 20, y: navBarHeight + navOffset+75,
+                            width: 120, height: 30)
+        view.addUIElement(fileButton, text: "add file",
+                          frame: sFrame) { element in
+            guard let button = element as? UIButton else { return }
+            button.setTitleColor(UIColor.blue, for: .normal)
+            button.contentHorizontalAlignment = .left;
+        }
+        let tFrame = CGRect(x: 20, y: navBarHeight + navOffset+125,
+                            width: 120, height: 30)
+        view.addUIElement(photoButton, text: "add photo",
+                          frame: tFrame) { element in
+            guard let button = element as? UIButton else { return }
+            button.setTitleColor(UIColor.blue, for: .normal)
+            button.contentHorizontalAlignment = .left;
         }
     }
     func rightButtonPressed() {
@@ -45,12 +57,14 @@ class ContinuedQuestionViewController: ViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "New Question"
+        navigationItem.leftBarButtonItem?.title = ""
         navBarHeight = navigationController?.navigationBar.frame.height
         let rightButton = UIButton()
         rightButton.setTitle("Post", for: UIControlState())
         rightButton.titleLabel?.font = UIFont(name: "Helvetica", size: 16)
         rightButton.setTitleColor(UIColor.white, for: UIControlState())
-        rightButton.addTarget(self, action: #selector(ContinuedQuestionViewController.rightButtonPressed), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(rightButtonPressed),
+                              for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
         
         let rightBar = UIBarButtonItem(customView: rightButton)

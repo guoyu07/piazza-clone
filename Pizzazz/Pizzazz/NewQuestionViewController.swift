@@ -48,7 +48,8 @@ class NewQuestionViewController: ViewController, UITextViewDelegate {
         rightButton.setTitle("Next", for: UIControlState())
         rightButton.titleLabel?.font = UIFont(name: "Helvetica", size: 16)
         rightButton.setTitleColor(UIColor.white, for: UIControlState())
-        rightButton.addTarget(self, action: #selector(NewQuestionViewController.rightButtonPressed), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(rightButtonPressed),
+                              for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
         
         let rightBar = UIBarButtonItem(customView: rightButton)
