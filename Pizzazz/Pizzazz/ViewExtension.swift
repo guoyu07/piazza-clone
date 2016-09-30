@@ -8,13 +8,12 @@
 
 //  font helper: http://iosfonts.com/
 
-import Foundation
+
 import UIKit
 
 extension UIView {
     
     func placeUIElement<T: UIView>(_ element: T, frame: CGRect) {
-        // print(frame)
         element.frame = frame
         self.addSubview(element)
     }
@@ -52,7 +51,22 @@ extension UIView {
         onSuccess(element)
     }
 }
+// protocol composition
+typealias TableMaster = UITableViewDelegate & UITableViewDataSource
 
+extension UITableView {
+    convenience init(frame: CGRect,
+                     controller: TableMaster, cellWrapper: CellWrapper) {
+        self.init(frame: frame)
+        self.delegate = controller
+        self.dataSource = controller
+        let tp = cellWrapper.cell.self
+        self.register(tp.classForCoder,
+                      forCellReuseIdentifier: cellWrapper.identifier)
+        self.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
+        self.rowHeight = 80
+    }
+}
 
 extension UIColor{
     convenience init(rgb: UInt, alphaVal: CGFloat? = 1.0) {

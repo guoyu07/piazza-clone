@@ -8,18 +8,13 @@
 
 import UIKit
 
-class HomeViewController: UIViewController,
-    UITableViewDataSource, UITableViewDelegate {
+class HomeViewController: ViewController {
     
     var tableView: UITableView!
-    var w: CGFloat!
-    var h: CGFloat!
+
     
-    typealias CellType = ClassViewCell
-    fileprivate struct Main {
-        static let CellIdentifier = "cell"
-        static let CellClass = ClassViewCell.self
-    }
+    let cellWrapper = CellWrapper(cell: ClassViewCell.self)
+    typealias cellType = ClassViewCell
     
     let sections = ["Active Classes", "Inactive Classes"]
     let activeCount = 3
@@ -30,51 +25,23 @@ class HomeViewController: UIViewController,
         print("add pressed")
     }
     
-    func addToolbar() {
-        let toolbar = UIToolbar()
-        toolbar.barTintColor = UIColor(white: 0.95, alpha: 1.0)
-        
-        let moreButton = UIButton()
-        moreButton.setBackgroundImage(UIImage(named: "MoreIcon"), for: UIControlState())
-        moreButton.frame = CGRect(x: 0, y: 0, width: 30, height: 10)
-        
-        let accountButton = UIButton()
-        accountButton.setTitle("Account", for: UIControlState())
-        accountButton.titleLabel?.font = UIFont(name: "Helvetica", size: 11)
-        accountButton.setTitleColor(UIColor(rgb: 0x3e7aab), for: UIControlState())
-        accountButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
-        
-        let item1 = UIBarButtonItem(customView: moreButton)
-        let item2 = UIBarButtonItem(customView: accountButton)
-        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        
-        toolbar.setItems([item1, spacer, item2], animated: true)
-        view.addUIElement(toolbar, frame: CGRect(x: 0, y: h-40, width: w, height: 40))
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
-        
-        w = view.bounds.size.width
-        h = view.bounds.size.height
         navigationItem.title = "Classes"
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(HomeViewController.add))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add,
+                                        target: self, action: #selector(add))
         navigationItem.setRightBarButton(addButton, animated: true)
         
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: w, height: h-50))
-        tableView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(Main.CellClass,
-                                forCellReuseIdentifier: Main.CellIdentifier)
-        // tableView.separatorStyle = .None
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: w, height: h-50), controller: self, cellWrapper: cellWrapper)
         tableView.rowHeight = 120
         view.addSubview(tableView)
+        
         addToolbar()
     }
+}
 
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
@@ -103,8 +70,8 @@ class HomeViewController: UIViewController,
     
     func tableView(_ tableView: UITableView,
         cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: Main.CellIdentifier, for: indexPath) as! CellType
-            // cell.selectionStyle = .None
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellWrapper.identifier, for: indexPath) as! cellType
+            cell.selectionStyle = .none
             let section = (indexPath as NSIndexPath).section
             var idx = 0
             if section == 0 {

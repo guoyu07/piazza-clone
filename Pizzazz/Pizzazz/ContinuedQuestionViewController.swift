@@ -8,10 +8,8 @@
 
 import UIKit
 
-class ContinuedQuestionViewController: UIViewController, UITextViewDelegate {
+class ContinuedQuestionViewController: ViewController, UITextViewDelegate {
     
-    var w: CGFloat!
-    var h: CGFloat!
     var navBarHeight: CGFloat!
     let navOffset:CGFloat = 20
     
@@ -37,19 +35,15 @@ class ContinuedQuestionViewController: UIViewController, UITextViewDelegate {
     func rightButtonPressed() {
         let allVC = self.navigationController?.viewControllers
         if let destVC = allVC![allVC!.count - 2] as? BoardViewController {
-            navigationController?.popToViewController(destVC, animated: true)
+            let _ = navigationController?.popToViewController(destVC, animated: true)
         }
         else {
-             navigationController?.popToRootViewController(animated: true)
+            let _ = navigationController?.popToRootViewController(animated: true)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
-        w = view.bounds.size.width
-        h = view.bounds.size.height
         navigationItem.title = "New Question"
         navBarHeight = navigationController?.navigationBar.frame.height
         let rightButton = UIButton()

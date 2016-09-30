@@ -22,6 +22,8 @@
 		242912EB1CDD2FD4008DF27F /* CourseInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242912EA1CDD2FD4008DF27F /* CourseInfoViewController.swift */; };
 		242912ED1CDD35FE008DF27F /* StaffViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242912EC1CDD35FE008DF27F /* StaffViewCell.swift */; };
 		242912EF1CDD3BB3008DF27F /* ClassInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242912EE1CDD3BB3008DF27F /* ClassInfoViewCell.swift */; };
+		243E79A91D9E06CF009B4308 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243E79A81D9E06CF009B4308 /* ViewController.swift */; };
+		243E79AB1D9E0ECE009B4308 /* CellWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243E79AA1D9E0ECE009B4308 /* CellWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		242912EA1CDD2FD4008DF27F /* CourseInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseInfoViewController.swift; sourceTree = "<group>"; };
 		242912EC1CDD35FE008DF27F /* StaffViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaffViewCell.swift; sourceTree = "<group>"; };
 		242912EE1CDD3BB3008DF27F /* ClassInfoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassInfoViewCell.swift; sourceTree = "<group>"; };
+		243E79A81D9E06CF009B4308 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		243E79AA1D9E0ECE009B4308 /* CellWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,10 +101,11 @@
 			children = (
 				242912B51CDC34E1008DF27F /* AppDelegate.swift */,
 				242912D51CDC3624008DF27F /* Extensions */,
-				242912DC1CDC3778008DF27F /* Models */,
+				242912DC1CDC3778008DF27F /* Model */,
 				242912DF1CDC6767008DF27F /* Cells */,
-				242912B71CDC34E1008DF27F /* HomeViewController.swift */,
+				243E79A71D9E069A009B4308 /* Base */,
 				242912E01CDC6C6F008DF27F /* BoardViewController.swift */,
+				242912B71CDC34E1008DF27F /* HomeViewController.swift */,
 				242912EA1CDD2FD4008DF27F /* CourseInfoViewController.swift */,
 				242912E61CDD1A32008DF27F /* NewQuestionViewController.swift */,
 				242912E81CDD2C7A008DF27F /* ContinuedQuestionViewController.swift */,
@@ -128,11 +133,11 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
-		242912DC1CDC3778008DF27F /* Models */ = {
+		242912DC1CDC3778008DF27F /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = Models;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		242912DF1CDC6767008DF27F /* Cells */ = {
@@ -145,6 +150,15 @@
 				242912EE1CDD3BB3008DF27F /* ClassInfoViewCell.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		243E79A71D9E069A009B4308 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				243E79AA1D9E0ECE009B4308 /* CellWrapper.swift */,
+				243E79A81D9E06CF009B4308 /* ViewController.swift */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,8 +264,10 @@
 			files = (
 				242912E91CDD2C7A008DF27F /* ContinuedQuestionViewController.swift in Sources */,
 				242912EF1CDD3BB3008DF27F /* ClassInfoViewCell.swift in Sources */,
+				243E79AB1D9E0ECE009B4308 /* CellWrapper.swift in Sources */,
 				242912E31CDC6DFD008DF27F /* PostViewCell.swift in Sources */,
 				242912E71CDD1A32008DF27F /* NewQuestionViewController.swift in Sources */,
+				243E79A91D9E06CF009B4308 /* ViewController.swift in Sources */,
 				242912DB1CDC371E008DF27F /* StringAndDateExtension.swift in Sources */,
 				242912EB1CDD2FD4008DF27F /* CourseInfoViewController.swift in Sources */,
 				242912ED1CDD35FE008DF27F /* StaffViewCell.swift in Sources */,

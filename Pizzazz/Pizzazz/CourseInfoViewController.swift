@@ -7,27 +7,24 @@
 //
 import UIKit
 
-class CourseInfoViewController: UIViewController,
-    UITableViewDataSource, UITableViewDelegate {
+class CourseInfoViewController: ViewController {
     
     var tableView: UITableView!
-    var w: CGFloat!
-    var h: CGFloat!
     
     typealias CellType = ClassViewCell
     fileprivate struct Main {
         static let CellIdentifier = "cell"
-        static let CellClass = ClassViewCell.self
+        static let CellClass = CellType.self
     }
     typealias InfoCellType = ClassInfoViewCell
     fileprivate struct Info {
         static let CellIdentifier = "infoCell"
-        static let CellClass = ClassInfoViewCell.self
+        static let CellClass = InfoCellType.self
     }
     typealias SecondaryCellType = StaffViewCell
     fileprivate struct Secondary {
         static let CellIdentifier = "staffCell"
-        static let CellClass = StaffViewCell.self
+        static let CellClass = SecondaryCellType.self
     }
     let sections = ["Course Information", "General Information", "Staff",] //"Resources"]
     var dummyTitle: String! = "Class 0"
@@ -37,7 +34,7 @@ class CourseInfoViewController: UIViewController,
     let staffNames = ["John Dermot", "Brianna Radnovich", "Nikolas Thomas",
                         "Sarah Beekman", "Diana Marshall"]
     
-    func addToolbar() {
+    override func addToolbar() {
         let toolbar = UIToolbar()
         toolbar.barTintColor = UIColor(white: 0.95, alpha: 1.0)
         view.addUIElement(toolbar, frame: CGRect(x: 0, y: h-40, width: w, height: 40))
@@ -50,25 +47,25 @@ class CourseInfoViewController: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
-        w = view.bounds.size.width
-        h = view.bounds.size.height
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: w, height: h-50))
         tableView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(Main.CellClass,
-            forCellReuseIdentifier: Main.CellIdentifier)
+                           forCellReuseIdentifier: Main.CellIdentifier)
         tableView.register(Info.CellClass,
-            forCellReuseIdentifier: Info.CellIdentifier)
+                           forCellReuseIdentifier: Info.CellIdentifier)
         tableView.register(Secondary.CellClass,
-            forCellReuseIdentifier: Secondary.CellIdentifier)
+                           forCellReuseIdentifier: Secondary.CellIdentifier)
         tableView.rowHeight = 90
         view.addSubview(tableView)
+        
         addToolbar()
         
     }
+}
+
+extension CourseInfoViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count

@@ -8,33 +8,27 @@
 
 import UIKit
 
-class BoardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BoardViewController: ViewController {
     
     var tableView: UITableView!
-    var w: CGFloat!
-    var h: CGFloat!
-    
-    typealias CellType = PostViewCell
-    fileprivate struct Main {
-        static let CellIdentifier = "cell"
-        static let CellClass = PostViewCell.self
-    }
+    let cellWrapper = CellWrapper(cell: PostViewCell.self)
+    typealias cellType = PostViewCell
+
     let sections = ["Pinned", "Favorites", "Today", "Yesterday", "This Week", "Older"]
     let sectionRowCount = 3
     let dummyText = "I'm a post"
     let dummyStub = "Donald Drumf, 05/05/2016"
     
-    func addToolbar() {
+    override func addToolbar() {
         let toolbar = UIToolbar()
         toolbar.barTintColor = UIColor(white: 0.95, alpha: 1.0)
         
         let moreButton = UIButton()
-//        moreButton.setBackgroundImage(UIImage(named: "More500"), forState: .Normal)
-//        moreButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        moreButton.setBackgroundImage(UIImage(named: "MoreIcon"), for: UIControlState())
+        moreButton.setBackgroundImage(UIImage(named: "MoreIcon"),
+                                      for: UIControlState())
         moreButton.frame = CGRect(x: 0, y: 0, width: 30, height: 10)
 
-        let composeButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(BoardViewController.composeButtonPressed))
+        let composeButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(composeButtonPressed))
         composeButton.width = 40
         
         let item1 = UIBarButtonItem(customView: moreButton)
@@ -61,8 +55,6 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         
         let infoButton = UIButton()
         infoButton.setBackgroundImage(UIImage(named: "PaperIcon"), for: UIControlState())
@@ -71,20 +63,15 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
         let infoBar = UIBarButtonItem(customView: infoButton)
         navigationItem.setRightBarButton(infoBar, animated: true)
         
-        w = view.bounds.size.width
-        h = view.bounds.size.height
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: w, height: h-50))
-        tableView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(Main.CellClass,
-            forCellReuseIdentifier: Main.CellIdentifier)
-        tableView.rowHeight = 80
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: w, height: h-50), controller: self, cellWrapper: cellWrapper)
         view.addSubview(tableView)
-        addToolbar()
         
+        addToolbar()
     }
-    
+}
+
+extension BoardViewController: UITableViewDataSource, UITableViewDelegate {
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
@@ -108,8 +95,7 @@ class BoardViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView,
         cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: Main.CellIdentifier, for: indexPath) as! CellType
-            // cell.selectionStyle = .None
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellWrapper.identifier, for: indexPath) as! cellType
             let section = (indexPath as NSIndexPath).section
             let idx = sectionRowCount*section + (indexPath as NSIndexPath).item
             cell.titleLabel.text = "Question \(idx)"

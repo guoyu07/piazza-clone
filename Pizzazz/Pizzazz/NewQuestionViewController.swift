@@ -7,10 +7,8 @@
 //
 import UIKit
 
-class NewQuestionViewController: UIViewController, UITextViewDelegate {
-    
-    var w: CGFloat!
-    var h: CGFloat!
+class NewQuestionViewController: ViewController, UITextViewDelegate {
+
     var navBarHeight: CGFloat!
     let navOffset:CGFloat = 20
     
@@ -42,10 +40,7 @@ class NewQuestionViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
-        w = view.bounds.size.width
-        h = view.bounds.size.height
+
         navigationItem.title = "New Question"
         navBarHeight = navigationController?.navigationBar.frame.height
         
